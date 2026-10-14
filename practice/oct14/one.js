@@ -6,7 +6,10 @@ const orders = [
 ];
 
 const grouped = orders.reduce((acc,val) =>{
-    (acc[val.status]=acc[val.status] || []).push(val)
+    if(!acc[val.status]){
+        acc[val.status] = []
+    }
+    acc[val.status].push(val)
     return acc;
 },{});
 console.log(grouped);
