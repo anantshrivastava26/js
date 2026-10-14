@@ -1,24 +1,28 @@
 const obj = { a: { b: 5 }, c: { d: 6, e: { f: 6 } } };
 
-function flattenObj(obj, parent) {
-  const finalObj = {};
+function flattenObj(obj, parent){
+
+  let finalObj = {}
   const generateFlatObj = (obj, parent) => {
-    for (let key in obj) {
-      let value = obj[key];
-      let newParent = parent + key;
-      if (typeof value === "object") {
-        generateFlatObj(value, newParent + ".");
-      } else {
+    for(let key in obj){
+      let value = obj[key]
+      let newParent = parent+key;
+      if(typeof value === 'object'){
+        generateFlatObj(value, newParent+".")
+      } else{
         finalObj[newParent] = value;
       }
     }
-  };
-  generateFlatObj(obj, parent);
+  }
+  generateFlatObj(obj, parent)
   return finalObj;
+
 }
 
-let obj2 = flattenObj(obj, "");
+let obj2 = flattenObj(obj, "")
 console.log(obj2);
+
+
 
 let arr = [1, 2, 3, 4, 5];
 
@@ -48,3 +52,5 @@ function chunk(arr, size){
 }
 
 console.log(chunk(arr, 3));
+
+
