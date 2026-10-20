@@ -28,4 +28,6 @@ app.get('/login', (req, res) =>{
 
 app.use('/static', express.static('public'));
 
-
+app.post('/posting', (req, res) => {
+    res.send("Posting")
+})
