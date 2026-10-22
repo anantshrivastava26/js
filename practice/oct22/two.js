@@ -3,22 +3,37 @@ let users = [
   { id: 2, customer: "ravi", items: [{ sku: "A", qty: 1, price: 100 }] },
   { id: 3, customer: "asha", items: [] }
 ]
+const express = require('express')
 
-function summarizeOrders(users){
-let summary = new Map()
+const app = express()
 
-for(let user of users){
-  if(!summary.has(user.customer)){
-    summary.set(user.customer, {orders: 0, total: 0})
+
+
+//summarize orders function
+function summarizeOrders(users) {
+  let summary = new Map()
+
+  for (let user of users) {
+    if (!summary.has(user.customer)) {
+      summary.set(user.customer, { orders: 0, total: 0 })
+    }
+    const entry = summary.get(user.customer)
+    entry.orders++;
+    for (let item of user.items) {
+      entry.total += item.price * item.qty
+    }
   }
-  const entry = summary.get(user.customer)
-  entry.orders++;
-  for(let item of user.items){
-    entry.total += item.price * item.qty 
-  }
+
+  let finalArr = [...summary]
+  return finalArr
 }
 
-let finalArr = [...summary]
-return finalArr
-}
-console.log(summarizeOrders(users));
+app.post('/orders', (req, res) =>{
+  res.send(summarizeOrders(users))
+})
+
+const port = 3000;
+
+app.listen(port, () =>{
+  console.log(`Listening at ${port}`);
+})
