@@ -15,3 +15,7 @@ const grouped = orders.reduce((acc, val) =>{
 }, {})
 
 console.log(grouped);
+
+
+const filtered = orders.filter(x => x.amount>200).map(x => ({id: x.id, amount: x.amount}))
+console.log(filtered);
