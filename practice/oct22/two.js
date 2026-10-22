@@ -3,10 +3,6 @@ let users = [
   { id: 2, customer: "ravi", items: [{ sku: "A", qty: 1, price: 100 }] },
   { id: 3, customer: "asha", items: [] }
 ]
-const express = require('express')
-
-const app = express()
-
 
 
 //summarize orders function
@@ -27,6 +23,14 @@ function summarizeOrders(users) {
   let finalArr = [...summary]
   return finalArr
 }
+
+
+//backend
+
+const express = require('express')
+
+const app = express()
+
 
 app.post('/orders', (req, res) =>{
   res.send(summarizeOrders(users))
