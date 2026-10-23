@@ -12,10 +12,8 @@ function unflattenObj(obj){
         }
         current[keys[keys.length-1]] = obj[key]
     }
-    return finalObj
+    return finalObj;
 }
-
-
 const flat = {
     "user.name": "Anant",
     "user.address.city": "Chennai",
